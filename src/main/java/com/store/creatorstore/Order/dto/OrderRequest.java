@@ -24,4 +24,6 @@ public class OrderRequest {
     @Valid
     @NotEmpty(message = "order must contain at least one item")
     private List<OrderItemRequest> orderItems;
+
+
 }
