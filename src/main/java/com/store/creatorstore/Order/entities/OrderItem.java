@@ -1,6 +1,8 @@
-package com.store.creatorstore.entities;
+package com.store.creatorstore.Order.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.store.creatorstore.Product.entities.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +27,7 @@ public class OrderItem {
     private BigDecimal priceAtPurchase;
 
     // relations
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;

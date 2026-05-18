@@ -1,6 +1,7 @@
-package com.store.creatorstore.entities;
+package com.store.creatorstore.Product.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.store.creatorstore.Order.entities.OrderItem;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
