@@ -23,8 +23,8 @@ public class OrderService {
 
     BigDecimal totalPrice = BigDecimal.ZERO;
 
-    private OrderRepository orderRepository;
-    private ProductRepository productRepository;
+    private final OrderRepository orderRepository;
+    private final ProductRepository productRepository;
 
     @Transactional
     public Order createOrder(OrderRequest  orderRequest) {
@@ -66,7 +66,29 @@ public class OrderService {
 
             orderItems.add(orderItem);
         }
+        order.setTotalPrice(totalPrice);
+        order.setOrderItems(orderItems);
 
-        return order;
+
+
+        return orderRepository.save(order);
     }
+
+
+    public List<Order> getAllOrders(){
+        return orderRepository.findAll();
+    }
+
+    public Order getOrderById(Long id){
+        return orderRepository.findById(id).orElseThrow(() -> new RuntimeException("order not found" +  id));
+    }
+
+    public Order changeOrderStatus(Long id, String status){
+        Order order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("order not found" +  id));
+
+        order.setStatus(status);
+        return orderRepository.save(order);
+    }
+
+
 }
